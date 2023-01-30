@@ -30,14 +30,11 @@ inputCountry.addEventListener(
         
         .then(updList)
         
-            
-        
   }, DEBOUNCE_DELAY)
 );
 
 function creatMarkUp( data ) {
     const allLanguage = Object.values(data.languages)
-    
     return `
         <img src=${data.flags.svg} class="country-flag" alt="country flag" width="300" height="200">
         <h2 class="country-name">${data.name.official}</h2>
@@ -47,13 +44,7 @@ function creatMarkUp( data ) {
     `
 }
 
-function updList(markup) {
-    countryList.innerHTML = markup
-    console.log(markup)
-}
-
 function creatMarkUplist( data ) {
-        
     return `
     <li>
         <img src=${data.flags.svg} class="country-flag" alt="country flag" width="30" height="20">
@@ -61,3 +52,10 @@ function creatMarkUplist( data ) {
     </li>
     `
 }
+
+function updList(markup) {
+
+    countryList.innerHTML = markup
+    console.log(markup)
+}
+
