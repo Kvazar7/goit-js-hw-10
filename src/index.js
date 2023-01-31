@@ -13,7 +13,7 @@ inputCountry.addEventListener(
     "input", 
     debounce(() => {
         
-      let name = inputCountry.value.trim()
+    let name = inputCountry.value.trim()
     console.log(name)
 
         if (inputCountry.value === "")
