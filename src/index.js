@@ -12,6 +12,7 @@ const DEBOUNCE_DELAY = 300;
 inputCountry.addEventListener(
     "input", 
     debounce(() => {
+        
       let name = inputCountry.value.trim()
     console.log(name)
 
@@ -44,27 +45,27 @@ function creatMarkUp( data ) {
         <p class="capital">Capital: ${data.capital}</p>
         <p class="population">Population: ${data.population}</p>
         <p class="languages">Languages: ${allLanguage}</p>`
-}
+};
 
 function creatMarkUplist( data ) {
     return `<li>
         <img src=${data.flags.svg} class="country-flag" alt="country flag" width="30" height="20">
         <h2 class="country-name">${data.name.official}</h2>
         </li>`
-}
+};
 
 function clearAll() {
     countryList.innerHTML = "";
     countryData.innerHTML = "";
-}
+};
 function updList(markup) {
     countryList.innerHTML = markup
-}
+};
 function updData(markup) {
     if (markup !== undefined)
         countryData.innerHTML = markup
     else 
         return
     console.log(markup)
-}
+};
 
