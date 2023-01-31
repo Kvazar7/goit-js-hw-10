@@ -12,29 +12,33 @@ const DEBOUNCE_DELAY = 300;
 inputCountry.addEventListener(
     "input", 
     debounce(() => {
-        
-    let name = inputCountry.value.trim()
-    console.log(name)
+        let name = inputCountry.value.trim();
+        console.log(name)
 
-        if (inputCountry.value === "")
+        if (name === "") {
             return clearAll();
-        else
-            
-    SERCH.fetchCountries(name)
-        .then((data) => {
-            if (data.status === 404) 
-                return Notiflix.Notify.warning("Oops, there is no country with that name");
-            else if (data.length > 10)
-                return Notiflix.Notify.warning("Too many matches found. Please enter a more specific name.");
-            else if (data.length === 1)
-                return data.reduce((markup, data) =>
-                creatMarkUp(data) + markup, "");
-            else return data.reduce((markup, data) =>
-                creatMarkUplist(data) + markup, "");
-        })
-
-        .then( updData || updList)
-
+        }
+        else {
+            SERCH.fetchCountries(name)
+                .then((data) => {
+                    if (data.status === 404) {
+                        return Notiflix.Notify.warning("Oops, there is no country with that name");
+                    }
+                    else if (data.length > 10) {
+                        return Notiflix.Notify.warning("Too many matches found. Please enter a more specific name.");
+                    }
+                    else if (data.length === 1) {
+                        return data.reduce((markup, data) =>
+                            creatMarkUp(data) + markup, "");
+                    }
+                    else {
+                        return data.reduce((markup, data) =>
+                            creatMarkUpList(data) + markup, "");
+                    }
+                })
+        
+                .then(updData || updList)
+        }
   }, DEBOUNCE_DELAY)
 );
 
@@ -47,7 +51,7 @@ function creatMarkUp( data ) {
         <p class="languages">Languages: ${allLanguage}</p>`
 };
 
-function creatMarkUplist( data ) {
+function creatMarkUpList( data ) {
     return `<li>
         <img src=${data.flags.svg} class="country-flag" alt="country flag" width="30" height="20">
         <h2 class="country-name">${data.name.official}</h2>
@@ -62,10 +66,11 @@ function updList(markup) {
     countryList.innerHTML = markup
 };
 function updData(markup) {
-    if (markup !== undefined)
+    if (markup !== undefined) {
         countryData.innerHTML = markup
-    else 
-        return
-    console.log(markup)
+    }
+    else {
+        return 
+    }
 };
 
